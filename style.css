@@ -1,0 +1,569 @@
+/* ===========================
+   MASJID AL IKHLAS - STYLE.CSS
+   =========================== */
+
+/* ===== BASE ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===== SCROLL OFFSET FOR STICKY NAV ===== */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ===== LOADING SCREEN ===== */
+#loading-screen {
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#loading-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ===== NAVBAR ===== */
+#navbar {
+  background: transparent;
+}
+
+#navbar.scrolled {
+  background: rgba(6, 95, 70, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.dark #navbar.scrolled {
+  background: rgba(3, 40, 30, 0.97);
+}
+
+/* ===== MOBILE MENU ===== */
+#mobile-menu.open {
+  max-height: 500px;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  min-height: 100svh;
+}
+
+.hero-bg {
+  background: linear-gradient(
+    135deg,
+    #022c22 0%,
+    #064e3b 25%,
+    #065f46 50%,
+    #047857 75%,
+    #064e3b 100%
+  );
+}
+
+/* ===== ISLAMIC PATTERN ===== */
+.islamic-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ===== GOLD TEXT ===== */
+.text-gold-300 {
+  color: #fcd34d;
+}
+.text-gold-400 {
+  color: #fbbf24;
+}
+.bg-gold-100 {
+  background-color: #fef3c7;
+}
+.bg-gold-900\/30 {
+  background-color: rgba(120, 53, 15, 0.3);
+}
+.text-gold-700 {
+  color: #b45309;
+}
+.text-gold-400 {
+  color: #fbbf24;
+}
+.via-gold-500 {
+  --tw-gradient-stops: var(--tw-gradient-from), #f59e0b, var(--tw-gradient-to);
+}
+.bg-gradient-to-r.from-emerald-300.to-gold-300 {
+  background-image: linear-gradient(to right, #6ee7b7, #fcd34d);
+}
+
+/* ===== PRAYER TIME CARDS ===== */
+/* Responsive: on mobile stack to 3 cols, on sm+ use inline style from JS */
+#prayer-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+@media (min-width: 480px) {
+  #prayer-grid {
+    grid-template-columns: repeat(6, 1fr) !important;
+  }
+}
+#prayer-skeleton {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+@media (min-width: 480px) {
+  #prayer-skeleton {
+    grid-template-columns: repeat(6, 1fr) !important;
+  }
+}
+
+.prayer-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 0.875rem 0.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.prayer-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Terbit / Syuruq — info only, amber tinted */
+.prayer-card.info-only {
+  background: rgba(251, 191, 36, 0.05);
+  border-color: rgba(251, 191, 36, 0.12);
+}
+
+.prayer-card.info-only .prayer-name {
+  color: rgba(251, 191, 36, 0.6) !important;
+}
+
+.prayer-card.info-only .prayer-time {
+  color: rgba(251, 191, 36, 0.85) !important;
+}
+
+.prayer-card.active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.15));
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2), inset 0 0 20px rgba(16, 185, 129, 0.05);
+  animation: prayerGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes prayerGlow {
+  from { box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
+  to { box-shadow: 0 0 25px rgba(16, 185, 129, 0.5); }
+}
+
+.prayer-card .prayer-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+}
+
+.prayer-card.active .prayer-icon {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.prayer-card .prayer-name {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.prayer-card.active .prayer-name {
+  color: #6ee7b7;
+}
+
+.prayer-card .prayer-time {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+  font-variant-numeric: tabular-nums;
+}
+
+.prayer-card.active .prayer-time {
+  color: #34d399;
+}
+
+.prayer-card .active-badge {
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.prayer-card.active .active-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  font-size: 0.625rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* ===== KAJIAN CARDS ===== */
+.kajian-card {
+  background: white;
+  border: 1px solid #f0fdf4;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .kajian-card {
+  background: #111827;
+  border-color: #1f2937;
+}
+
+.kajian-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #10b981, #059669);
+  border-radius: 4px 0 0 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.kajian-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
+  border-color: #a7f3d0;
+}
+
+.dark .kajian-card:hover {
+  border-color: #065f46;
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.05);
+}
+
+.kajian-card:hover::before {
+  opacity: 1;
+}
+
+.kajian-card.today {
+  border-color: #10b981;
+  box-shadow: 0 0 0 1px #10b981, 0 10px 30px rgba(16, 185, 129, 0.15);
+  animation: todayGlow 2.5s ease-in-out infinite alternate;
+}
+
+.dark .kajian-card.today {
+  border-color: #059669;
+  box-shadow: 0 0 0 1px #059669, 0 10px 30px rgba(16, 185, 129, 0.1);
+}
+
+.kajian-card.today::before {
+  opacity: 1;
+}
+
+@keyframes todayGlow {
+  from { box-shadow: 0 0 0 1px #10b981, 0 10px 20px rgba(16, 185, 129, 0.1); }
+  to { box-shadow: 0 0 0 2px #10b981, 0 15px 35px rgba(16, 185, 129, 0.25); }
+}
+
+.kajian-day-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.dark .kajian-day-badge {
+  background: rgba(6, 95, 70, 0.3);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.kajian-card.today .kajian-day-badge {
+  background: #10b981;
+  color: white;
+  border-color: transparent;
+}
+
+.today-indicator {
+  display: none;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.kajian-card.today .today-indicator {
+  display: inline-block;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(16, 185, 129, 0.8); }
+  50% { opacity: 0.4; box-shadow: 0 0 4px rgba(16, 185, 129, 0.3); }
+}
+
+.today-badge {
+  display: none;
+}
+
+.kajian-card.today .today-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.badge-umum {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dark .badge-umum {
+  background: rgba(6, 95, 70, 0.3);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.badge-muslimah {
+  background: #fdf2f8;
+  color: #be185d;
+  border: 1px solid #fbcfe8;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dark .badge-muslimah {
+  background: rgba(157, 23, 77, 0.2);
+  color: #f9a8d4;
+  border-color: rgba(244, 114, 182, 0.2);
+}
+
+/* ===== GALLERY ===== */
+.gallery-card {
+  transition: transform 0.4s ease;
+}
+
+.gallery-card:hover {
+  z-index: 1;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== BACK TO TOP ===== */
+#back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ===== MOBILE BOTTOM NAV ===== */
+.mobile-bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom, 8px);
+}
+
+.mobile-bottom-link.active {
+  color: #059669;
+}
+
+.dark .mobile-bottom-link.active {
+  color: #34d399;
+}
+
+/* ===== GLASSMORPHISM ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* ===== DIGITAL CLOCK ===== */
+#digital-clock {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+/* ===== TOAST ===== */
+#toast.show {
+  opacity: 1 !important;
+  transform: translate(-50%, 0) !important;
+  pointer-events: auto !important;
+}
+
+/* ===== FLOATING GRADIENT BG ===== */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #10b981;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: #10b981;
+  color: white;
+}
+
+/* ===== KAJIAN GRID on mobile horizontal scroll ===== */
+@media (max-width: 640px) {
+  #kajian-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* ===== SAFE AREA ===== */
+.safe-bottom {
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+/* ===== WAVE ANIMATION ===== */
+.wave-dot {
+  display: inline-block;
+  animation: wave 1.4s ease-in-out infinite;
+}
+
+.wave-dot:nth-child(2) { animation-delay: 0.2s; }
+.wave-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes wave {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+}
+
+/* ===== DARK MODE TRANSITIONS ===== */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
+}
+
+/* Exclude animations from transition */
+.prayer-card, .kajian-card, .gallery-card, #back-to-top, #toast {
+  transition: all 0.3s ease;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 640px) {
+  .hero-section h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  #digital-clock {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 640px) {
+  #wa-float {
+    bottom: 5rem;
+  }
+
+  #back-to-top {
+    bottom: 2rem;
+  }
+}
+
+/* Bottom nav spacing for mobile */
+@media (max-width: 640px) {
+  body {
+    padding-bottom: 4.5rem;
+  }
+
+  #back-to-top {
+    bottom: 6rem;
+  }
+
+  #wa-float {
+    bottom: 10rem;
+  }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  #navbar, .mobile-bottom-nav, #back-to-top, #wa-float, #loading-screen {
+    display: none !important;
+  }
+}
